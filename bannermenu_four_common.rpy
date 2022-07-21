@@ -152,6 +152,9 @@ init python in bannermenu_four:
         "[[Show prev banners.]": ('bannermod_four_arrow flip',''),
     }
 
+    n_banner = 5
+    n_non_banner = 3
+
     @renpy.pure
     def select_banners(items):
         banner_items = []
@@ -180,6 +183,8 @@ transform bannermenu_four_menu_banner_selection_alpha:
 
 
 screen bannermenu_four_choice(items):
+    default banneroffset = 0
+    default nonbanneroffset = 0
     window:
         style "bannermenu_four_menu_window"
         xalign 0.5
@@ -201,16 +206,19 @@ screen bannermenu_four_choice(items):
                 yalign 0.0
                 xalign 0.5
 
-                if len(banner_items) > 1 and (banner_items[-1][0] == "[[Show prev banners.]"):
+                if len(banner_items) > bannermenu_four.n_banner:
                     button at bannermenu_four_menu_banner_selection_alpha:
-                        action [banner_items[-1][1], Play("audio", "se/sounds/select3.ogg")]
+                        action [
+                            SetScreenVariable('banneroffset', banneroffset-bannermenu_four.n_banner if banneroffset > bannermenu_four.n_banner else len(banner_items)-(len(banner_items) % bannermenu_four.n_banner)),
+                            Play("audio", "se/sounds/select3.ogg")
+                        ]
                         hovered Play("audio", "se/sounds/select.ogg")
                         style "bannermenu_four_menu_banner"
 
                         add 'bannermod_four_arrow flip':
                             zoom 0.5
 
-                for caption, action, _ in banner_items:
+                for caption, action, _ in banner_items[banneroffset:banneroffset+bannermenu_four.n_banner]:
                     if caption not in ["[[Show more banners.]","[[Show prev banners.]"]:
                         python:
                             banner_image, banner_status = bannermenu_four.banners[caption]
@@ -227,9 +235,12 @@ screen bannermenu_four_choice(items):
 
                                 text caption style "menu_choice"
 
-                if len(banner_items) > 1 and (banner_items[-2][0] == "[[Show more banners.]"):
+                if len(banner_items) > bannermenu_four.n_banner:
                     button at bannermenu_four_menu_banner_selection_alpha:
-                        action [banner_items[-2][1], Play("audio", "se/sounds/select3.ogg")]
+                        action [
+                            SetScreenVariable('banneroffset', 0 if banneroffset+bannermenu_four.n_banner>=len(banner_items) else banneroffset+bannermenu_four.n_banner),
+                            Play("audio", "se/sounds/select3.ogg")
+                        ]
                         hovered Play("audio", "se/sounds/select.ogg")
                         style "bannermenu_four_menu_banner"
 
@@ -247,7 +258,7 @@ screen bannermenu_four_choice(items):
                 style "menu"
                 xalign 0.5
 
-                for caption, action, _ in non_banners:
+                for caption, action, _ in non_banners[nonbanneroffset:nonbanneroffset+bannermenu_four.n_non_banner]:
 
                     if action:
 
@@ -260,6 +271,18 @@ screen bannermenu_four_choice(items):
 
                     else:
                         text caption style "menu_caption"
+
+                if len(non_banners) > bannermenu_four.n_non_banner + 1:
+                    button:
+                        action [
+                            SetScreenVariable('nonbanneroffset', 0 if nonbanneroffset+bannermenu_four.n_non_banner>=len(non_banners) else nonbanneroffset+bannermenu_four.n_non_banner), 
+                            Play("audio", "se/sounds/select3.ogg")
+                        ]
+                        hovered Play("audio", "se/sounds/select.ogg")
+                        style "menu_choice_button"
+
+                        text "[[Show more options.]" style "menu_choice"
+
 
 
 label bannermod_test_scene:
