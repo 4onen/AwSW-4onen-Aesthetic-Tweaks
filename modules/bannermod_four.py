@@ -18,9 +18,6 @@ banners = {
 def register_raw_banner(prompt, im_name, statusvariable=''):
     banners[prompt] = (im_name, statusvariable)
 
-def register_banner(prompt, im_name, color, do_shadow=True, statusvariable=''):
-    raise NotImplementedError("'register_banner' in BannerMod is not yet complete.")
-
 def select_banners(items):
     banner_items = []
     non_banners = []
