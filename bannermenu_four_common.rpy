@@ -155,6 +155,15 @@ init python in bannermenu_four:
     n_banner = 5
     n_non_banner = 3
 
+init:
+    image bannermod_four_pillowbanner neutral = bannermenu_four.bannermod_four.blue_to_playercolor_displayable(
+        im.Composite(
+            (515,960),
+            (0,0), im.Recolor("ui/bannermod/banner.png", 0, 0, 255),
+            (0,0), "ui/bannermod/pillow.png"
+        )
+    )
+
 init python:
     style.bannermenu_four_menu_window = Style(style.nvl_window)
     style.bannermenu_four_menu_window.background = 'bannermod_four_menu_frame'

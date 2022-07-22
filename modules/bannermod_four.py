@@ -13,6 +13,7 @@ banners = {
     "Meet with the store clerk.": ('bannermod_four_clerkbanner', ''),
     "Meet with Katsuharu.": ('bannermod_four_katsubanner', ''),
     "Meet with Zhong.": ('bannermod_four_zhongbanner', ''),
+    "Get some well deserved rest.": ('bannermod_four_pillowbanner', ''),
 }
 
 def register_raw_banner(prompt, im_name, statusvariable=''):
