@@ -134,15 +134,15 @@ init:
     ####
     image bannermod_four_naomibanner neutral = im.Composite(
         (515,960),
-        (0,0), im.Recolor("ui/bannermod/banner.png", 181, 131, 131),
-        (0,0), im.Crop("cr/naomi_normal_b.png", (65,0,400,903)),
-        (0,0), im.Crop("cr/naomi_normal_b.png", (65,0,500,220)),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 190, 116, 164),
+        (0,60), im.Crop("cr/naomi_normal_b.png", (65,0,400,903)),
+        (0,60), im.Crop("cr/naomi_normal_b.png", (65,0,500,220)),
     )
     image bannermod_four_naomibanner good = im.Composite(
         (515,960),
-        (0,0), im.Recolor("ui/bannermod/banner.png", 181, 131, 131),
-        (0,0), im.Crop("cr/naomi_smile_b.png", (65,0,400,903)),
-        (0,0), im.Crop("cr/naomi_smile_b.png", (65,0,500,220)),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 190, 116, 164),
+        (0,60), im.Crop("cr/naomi_smile_b.png", (65,0,400,903)),
+        (0,60), im.Crop("cr/naomi_smile_b.png", (65,0,500,220)),
     )
 
 
