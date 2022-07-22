@@ -1,136 +1,133 @@
+init:
+    image bannermod_four_arrow = "ui/bannermod/arrow.png"
+    image bannermod_four_arrow flip = im.Flip("ui/bannermod/arrow.png", horizontal=True)
 
-image bannermod_four_banner = "ui/bannermod/banner.png"
-image bannermod_four_arrow = "ui/bannermod/arrow.png"
-image bannermod_four_arrow flip = im.Flip("ui/bannermod/arrow.png", horizontal=True)
+    image bannermod_four_menu_frame = Frame("image/ui/nvlscreen.png",195,195,tile=True)
 
-image bannermod_four_menu_frame = Frame("image/ui/nvlscreen.png",195,195,tile=True)
-
-####
-# Main cast
-####
-image bannermod_four_lunchboxbanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 74, 93, 136),
-    (0,0), "ui/bannermod/lunchbox.png",
-)
-image bannermod_four_adinebanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 74, 93, 136),
-    (-20,121), im.Crop("cr/adine_normal_b.png",(0,0,420,839)),
-)
-image bannermod_four_adinebanner good = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 74, 93, 136),
-    (75,121), im.Crop("cr/adine_giggle_b.png",(95,0,325,839)),
-    (-20,121), im.Crop("cr/adine_giggle_b.png",(0,0,420,460)),
-)
-
-
-image bannermod_four_annabanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 121, 77, 128),
-    (0,133), im.Crop("cr/anna_normal_b.png",(0,0,400,827)),
-    (0,133), im.Crop("cr/anna_normal_b.png",(0,0,455,140)),
-)
-image bannermod_four_annabanner good = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 121, 77, 128),
-    (0,133), im.Crop("cr/anna_smirk_b.png",(0,0,400,827)),
-    (0,133), im.Crop("cr/anna_smirk_b.png",(0,0,455,140)),
-)
+    ####
+    # Main cast
+    ####
+    image bannermod_four_lunchboxbanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 74, 93, 136),
+        (0,0), "ui/bannermod/lunchbox.png",
+    )
+    image bannermod_four_adinebanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 74, 93, 136),
+        (-20,121), im.Crop("cr/adine_normal_b.png",(0,0,420,839)),
+    )
+    image bannermod_four_adinebanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 74, 93, 136),
+        (75,121), im.Crop("cr/adine_giggle_b.png",(95,0,325,839)),
+        (-20,121), im.Crop("cr/adine_giggle_b.png",(0,0,420,460)),
+    )
 
 
-image bannermod_four_brycebanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 94, 132, 85),
-    (-40,70), im.Crop("cr/bryce_normal_b.png", (0,0,440,960)),
-    (-40,70), im.Crop("cr/bryce_normal_b.png", (0,0,545,230)),
-)
-image bannermod_four_brycebanner good = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 94, 132, 85),
-    (-40,70), im.Crop("cr/bryce_smirk_b.png", (0,0,440,960)),
-    (-40,70), im.Crop("cr/bryce_smirk_b.png", (0,0,545,230)),
-)
+    image bannermod_four_annabanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 121, 77, 128),
+        (0,133), im.Crop("cr/anna_normal_b.png",(0,0,400,827)),
+        (0,133), im.Crop("cr/anna_normal_b.png",(0,0,455,140)),
+    )
+    image bannermod_four_annabanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 121, 77, 128),
+        (0,133), im.Crop("cr/anna_smirk_b.png",(0,0,400,827)),
+        (0,133), im.Crop("cr/anna_smirk_b.png",(0,0,455,140)),
+    )
 
 
-image bannermod_four_lorembanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 224, 188, 129),
-    (75,310), im.Crop("cr/lorem_normal.png", (455,0,325,650)),
-    (0,310), im.Crop("cr/lorem_normal.png", (380,0,80,200)),
-)
-image bannermod_four_lorembanner good = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 224, 188, 129),
-    (75,310), im.Crop("cr/lorem_shy.png", (455,0,325,650)),
-    (0,310), im.Crop("cr/lorem_shy.png", (380,0,80,200)),
-)
+    image bannermod_four_brycebanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 94, 132, 85),
+        (-40,70), im.Crop("cr/bryce_normal_b.png", (0,0,440,960)),
+        (-40,70), im.Crop("cr/bryce_normal_b.png", (0,0,545,230)),
+    )
+    image bannermod_four_brycebanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 94, 132, 85),
+        (-40,70), im.Crop("cr/bryce_smirk_b.png", (0,0,440,960)),
+        (-40,70), im.Crop("cr/bryce_smirk_b.png", (0,0,545,230)),
+    )
 
 
-image bannermod_four_remybanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 147, 54, 62),
-    (0,108), im.Crop("cr/remy_normal.png", (0,0,400,960)),
-    (0,108), im.Crop("cr/remy_normal.png", (0,0,515,450)),
-)
-image bannermod_four_remybanner good = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 147, 54, 62),
-    (0,108), im.Crop("cr/remy_smile.png", (0,0,400,960)),
-    (0,108), im.Crop("cr/remy_smile.png", (0,0,515,450)),
-)
-
-####
-# Main cast
-####
-image bannermod_four_emerabanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 181, 190, 131),
-    (0,115), im.Crop("cr/emera_normal.png", (0,0,400,845)),
-)
+    image bannermod_four_lorembanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 224, 188, 129),
+        (75,310), im.Crop("cr/lorem_normal.png", (455,0,325,650)),
+        (0,310), im.Crop("cr/lorem_normal.png", (380,0,80,200)),
+    )
+    image bannermod_four_lorembanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 224, 188, 129),
+        (75,310), im.Crop("cr/lorem_shy.png", (455,0,325,650)),
+        (0,310), im.Crop("cr/lorem_shy.png", (380,0,80,200)),
+    )
 
 
-image bannermod_four_katsubanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 198, 198, 198),
-    (0,0), im.Crop("cr/katsu_normal.png", (0,30,400,960)),
-)
-image bannermod_four_katsubanner good = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 198, 198, 198),
-    (0,0), im.Crop("cr/katsu_smile.png", (0,30,400,960)),
-)
+    image bannermod_four_remybanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 147, 54, 62),
+        (0,108), im.Crop("cr/remy_normal.png", (0,0,400,960)),
+        (0,108), im.Crop("cr/remy_normal.png", (0,0,515,450)),
+    )
+    image bannermod_four_remybanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 147, 54, 62),
+        (0,108), im.Crop("cr/remy_smile.png", (0,0,400,960)),
+        (0,108), im.Crop("cr/remy_smile.png", (0,0,515,450)),
+    )
+
+    ####
+    # Side cast
+    ####
+    image bannermod_four_emerabanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 181, 190, 131),
+        (0,115), im.Crop("cr/emera_normal.png", (0,0,400,845)),
+    )
 
 
-image bannermod_four_sebastianbanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 142, 112, 78),
-    (0,236), im.Crop("cr/sebastian_normal_b.png", (70,0,420,500)),
-    (75,236), im.Crop("cr/sebastian_normal_b.png", (145,0,325,724)),
-)
-image bannermod_four_sebastianbanner good = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 142, 112, 78),
-    (0,236), im.Crop("cr/sebastian_smile_b.png", (70,0,420,500)),
-    (75,236), im.Crop("cr/sebastian_smile_b.png", (145,0,325,724)),
-)
+    image bannermod_four_katsubanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 198, 198, 198),
+        (0,0), im.Crop("cr/katsu_normal.png", (0,30,400,960)),
+    )
+    image bannermod_four_katsubanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 198, 198, 198),
+        (0,0), im.Crop("cr/katsu_smile.png", (0,30,400,960)),
+    )
 
 
-image bannermod_four_clerkbanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 126, 145, 71),
-    (0,90), im.Crop("cr/zhong_normal_c.png", (30,0,400,340)),
-    (75,90), im.Crop("cr/zhong_normal_c.png", (105,0,325,872)),
-)
-image bannermod_four_zhongbanner neutral = im.Composite(
-    (515,960),
-    (0,0), im.Recolor("ui/bannermod/banner.png", 126, 145, 71),
-    (0,90), im.Crop("cr/zhong_normal_c.png", (30,0,400,340)),
-    (75,90), im.Crop("cr/zhong_normal_c.png", (105,0,325,872)),
-)
+    image bannermod_four_sebastianbanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 142, 112, 78),
+        (0,236), im.Crop("cr/sebastian_normal_b.png", (70,0,420,500)),
+        (75,236), im.Crop("cr/sebastian_normal_b.png", (145,0,325,724)),
+    )
+    image bannermod_four_sebastianbanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 142, 112, 78),
+        (0,236), im.Crop("cr/sebastian_smile_b.png", (70,0,420,500)),
+        (75,236), im.Crop("cr/sebastian_smile_b.png", (145,0,325,724)),
+    )
 
 
+    image bannermod_four_clerkbanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 126, 145, 71),
+        (0,90), im.Crop("cr/zhong_normal_c.png", (30,0,400,340)),
+        (75,90), im.Crop("cr/zhong_normal_c.png", (105,0,325,872)),
+    )
+    image bannermod_four_zhongbanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 126, 145, 71),
+        (0,90), im.Crop("cr/zhong_normal_c.png", (30,0,400,340)),
+        (75,90), im.Crop("cr/zhong_normal_c.png", (105,0,325,872)),
+    )
 
 
 
