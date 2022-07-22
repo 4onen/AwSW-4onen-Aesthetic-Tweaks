@@ -62,8 +62,8 @@ init:
     image bannermod_four_lorembanner good = im.Composite(
         (515,960),
         (0,0), im.Recolor("ui/bannermod/banner.png", 224, 188, 129),
-        (75,310), im.Crop("cr/lorem_shy.png", (455,0,325,650)),
-        (0,310), im.Crop("cr/lorem_shy.png", (380,0,80,200)),
+        (75,310), im.Crop("cr/lorem_happy.png", (455,0,325,650)),
+        (0,310), im.Crop("cr/lorem_happy.png", (380,0,80,200)),
     )
 
 
