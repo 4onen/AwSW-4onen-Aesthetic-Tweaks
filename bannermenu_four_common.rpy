@@ -210,7 +210,7 @@ screen bannermenu_four_choice(items):
                 if len(banner_items) > bannermenu_four.n_banner:
                     button at bannermenu_four_menu_banner_selection_alpha:
                         action [
-                            SetScreenVariable('banneroffset', banneroffset-bannermenu_four.n_banner if banneroffset > bannermenu_four.n_banner else len(banner_items)-(len(banner_items) % bannermenu_four.n_banner)),
+                            SetScreenVariable('banneroffset', banneroffset-bannermenu_four.n_banner if banneroffset >= bannermenu_four.n_banner else len(banner_items)-(len(banner_items) % bannermenu_four.n_banner)),
                             Play("audio", "se/sounds/select3.ogg")
                         ]
                         hovered Play("audio", "se/sounds/select.ogg")
