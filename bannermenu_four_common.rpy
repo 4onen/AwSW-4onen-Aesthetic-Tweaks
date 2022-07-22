@@ -125,40 +125,35 @@ init:
     image bannermod_four_zhongbanner neutral = im.Composite(
         (515,960),
         (0,0), im.Recolor("ui/bannermod/banner.png", 126, 145, 71),
-        (0,90), im.Crop("cr/zhong_normal_c.png", (30,0,400,340)),
-        (75,90), im.Crop("cr/zhong_normal_c.png", (105,0,325,872)),
+        (0,90), im.Crop("cr/zhong_normal_b.png", (30,0,400,340)),
+        (75,90), im.Crop("cr/zhong_normal_b.png", (105,0,325,872)),
+    )
+
+    ####
+    # Mod cast
+    ####
+    image bannermod_four_naomibanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 181, 131, 131),
+        (0,0), im.Crop("cr/naomi_normal_b.png", (65,0,400,903)),
+        (0,0), im.Crop("cr/naomi_normal_b.png", (65,0,500,220)),
+    )
+    image bannermod_four_naomibanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 181, 131, 131),
+        (0,0), im.Crop("cr/naomi_smile_b.png", (65,0,400,903)),
+        (0,0), im.Crop("cr/naomi_smile_b.png", (65,0,500,220)),
     )
 
 
-
 init python in bannermenu_four:
+    import bannermod_four
+    from bannermod_four import select_banners
 
-    banners = {
-        "Meet with Remy.": ('bannermod_four_remybanner','remystatus'),
-        "Meet with Anna.": ('bannermod_four_annabanner','annastatus'),
-        "Meet with Bryce.": ('bannermod_four_brycebanner','brycestatus'),
-        "Meet with Adine.": ('bannermod_four_adinebanner','adinestatus'),
-        "Order some lunch.": ('bannermod_four_lunchboxbanner',''),
-        "Meet with Lorem.": ('bannermod_four_lorembanner','loremstatus'),
-        "Meet with Sebastian.": ('bannermod_four_sebastianbanner','sebastianstatus'),
-        "Meet with Emera.": ('bannermod_four_emerabanner',''),
-        "Meet with the store clerk.": ('bannermod_four_clerkbanner', ''),
-        "Meet with Katsuharu.": ('bannermod_four_katsubanner', ''),
-        "Meet with Zhong.": ('bannermod_four_zhongbanner', ''),
-        "[[Show more banners.]": ('bannermod_four_arrow',''),
-        "[[Show prev banners.]": ('bannermod_four_arrow flip',''),
-    }
+    select_banners = renpy.pure(select_banners)
 
     n_banner = 5
     n_non_banner = 3
-
-    @renpy.pure
-    def select_banners(items):
-        banner_items = []
-        non_banners = []
-        for item in items:
-            (banner_items if item[0] in banners else non_banners).append(item)
-        return banner_items, non_banners
 
 init python:
     style.bannermenu_four_menu_window = Style(style.nvl_window)
@@ -218,7 +213,7 @@ screen bannermenu_four_choice(items):
                 for caption, action, _ in banner_items[banneroffset:banneroffset+bannermenu_four.n_banner]:
                     if caption not in ["[[Show more banners.]","[[Show prev banners.]"]:
                         python:
-                            banner_image, banner_status = bannermenu_four.banners[caption]
+                            banner_image, banner_status = bannermenu_four.bannermod_four.banners[caption]
                             banner_status_label = " good" if getattr(renpy.store, banner_status, None) == "good" else " neutral"
 
                         button at bannermenu_four_menu_banner_selection_alpha:
@@ -285,7 +280,7 @@ screen bannermenu_four_choice(items):
 label bannermod_test_scene:
     python:
         print(renpy.display_menu(
-            [ (p,p) for p in bannermenu_four.banners.keys()]+
+            [ (p,p) for p in bannermenu_four.bannermod_four.banners.keys()]+
             [ ("Spend the day reading.","read") ],
             screen='bannermenu_four_choice'
         ))

@@ -2,8 +2,11 @@ import renpy
 from renpy import ast, config, game, python, exports
 
 from modloader.modclass import Mod, loadable_mod
+from modloader.modinfo import has_mod
 
 import jz_magmalink as ml
+
+from bannermod_four import register_raw_banner
 
 
 def _show_charmenu(calling_node):
@@ -80,6 +83,9 @@ class BannerMod(Mod):
         # )
 
         link_bannermod()
+
+        if has_mod("Chaos_Knight core mod."):
+            register_raw_banner("Meet with Naomi.",'bannermod_four_naomibanner','naomistatus')
 
     @staticmethod
     def mod_complete():
