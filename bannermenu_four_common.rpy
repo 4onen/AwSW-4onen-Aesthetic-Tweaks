@@ -172,6 +172,12 @@ init:
         )
     )
 
+    image bannermod_four_recordplayerbanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 126, 145, 71),
+        (0,0), "ui/bannermod/record_player.png"
+    )
+
 init python:
     style.bannermenu_four_menu_window = Style(style.nvl_window)
     style.bannermenu_four_menu_window.background = 'bannermod_four_menu_frame'
