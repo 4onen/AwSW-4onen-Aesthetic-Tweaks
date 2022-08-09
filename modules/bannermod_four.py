@@ -12,6 +12,7 @@ banners = {
     "Meet with Emera.": ('bannermod_four_emerabanner',''),
     "Meet with the store clerk.": ('bannermod_four_clerkbanner', ''),
     "Meet with Katsuharu.": ('bannermod_four_katsubanner', ''),
+    "Meet with Kevin.": ('bannermod_four_kevinbanner', ''),
     "Meet with Zhong.": ('bannermod_four_zhongbanner', ''),
     "Get some well deserved rest.": ('bannermod_four_pillowbanner', ''),
     "Spend the day reading.": ('bannermod_four_bookbanner', ''),

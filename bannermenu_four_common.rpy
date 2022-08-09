@@ -102,6 +102,14 @@ init:
     )
 
 
+    image bannermod_four_kevinbanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/bannermod/banner.png", 105, 105, 105),
+        (0,100), im.Crop("cr/kevin_normal.png", (115,0,400,895)),
+        (0,100), im.Crop("cr/kevin_normal.png", (115,0,410,650)),
+    )
+
+
     image bannermod_four_sebastianbanner neutral = im.Composite(
         (515,960),
         (0,0), im.Recolor("ui/bannermod/banner.png", 142, 112, 78),
