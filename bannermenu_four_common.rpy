@@ -113,13 +113,13 @@ init:
     image bannermod_four_sebastianbanner neutral = im.Composite(
         (515,960),
         (0,0), im.Recolor("ui/bannermod/banner.png", 142, 112, 78),
-        (0,236), im.Crop("cr/sebastian_normal_b.png", (70,0,420,500)),
+        (0,236), im.Crop("cr/sebastian_normal_b.png", (70,0,420,300)),
         (75,236), im.Crop("cr/sebastian_normal_b.png", (145,0,325,724)),
     )
     image bannermod_four_sebastianbanner good = im.Composite(
         (515,960),
         (0,0), im.Recolor("ui/bannermod/banner.png", 142, 112, 78),
-        (0,236), im.Crop("cr/sebastian_smile_b.png", (70,0,420,500)),
+        (0,236), im.Crop("cr/sebastian_smile_b.png", (70,0,420,300)),
         (75,236), im.Crop("cr/sebastian_smile_b.png", (145,0,325,724)),
     )
 
