@@ -168,7 +168,8 @@ init:
         im.Composite(
             (515,960),
             (0,0), im.Recolor("ui/bannermod/banner.png", 0, 0, 255),
-            (0,0), "ui/bannermod/pillow.png"
+            (0,0), "ui/bannermod/pillow.png",
+            (0,0), "ui/bannermod/skipmark.png",
         )
     )
 
@@ -176,14 +177,15 @@ init:
         im.Composite(
             (515,960),
             (0,0), im.Recolor("ui/bannermod/banner.png", 0, 0, 255),
-            (0,0), "ui/bannermod/books.png"
+            (0,0), "ui/bannermod/books.png",
+            (0,0), "ui/bannermod/skipmark.png",
         )
     )
 
     image bannermod_four_recordplayerbanner neutral = im.Composite(
         (515,960),
-        (0,0), im.Recolor("ui/bannermod/banner.png", 126, 145, 71),
-        (0,0), "ui/bannermod/record_player.png"
+        (0,0), im.Recolor("ui/bannermod/banner_swoopbottom.png", 126, 145, 71),
+        (0,0), "ui/bannermod/record_player.png",
     )
 
 init python:
