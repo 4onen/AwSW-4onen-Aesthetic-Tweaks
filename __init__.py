@@ -6,12 +6,12 @@ from modloader.modinfo import has_mod
 
 import jz_magmalink as ml
 
-from bannermod_four import register_raw_banner
+from four_aesthetics_banners import register_raw_banner
 
 
 def _show_charmenu(calling_node):
     ast.next_node(calling_node.next)
-    ast.statement_name("bannermod_four_menu")
+    ast.statement_name("four_aesthetics_banner_menu")
     
     menu = ml.node(calling_node).search_menu()
     choices = []
@@ -31,7 +31,7 @@ def _show_charmenu(calling_node):
     if not choices:
         return None
 
-    choice = exports.display_menu(choices, screen='bannermenu_four_choice')
+    choice = exports.display_menu(choices, screen='four_aesthetics_banners_choice')
 
     if choice is not None:
         ast.next_node(menu.node.items[choice][2][0])
@@ -47,14 +47,14 @@ def link_bannermod():
         .search_if("chapter2csplayed == 0")
 
     cpaginationifs = [
-        ("bannermod_c1pm1",c1csplayed.branch().search_say("(What should I do?)")),
-        ("bannermod_c1pm2",c1csplayed.branch('chapter1csplayed == 1').search_say("(More free time. What should I do?)")),
-        ("bannermod_c2pm1",c2csplayed.branch().search_if('chapter2count >= 7')),
-        ("bannermod_c2pm2",c2csplayed.branch('chapter2csplayed == 1').search_if('chapter2count >= 7')),
-        ("bannermod_c3pm1",ml.find_label('chapter3chars2').search_if('chapter3count >= 7')),
-        ("bannermod_c3pm2",ml.find_label('chapter3chars3').search_if('chapter3count >= 7')),
-        ("bannermod_c4pm1",ml.find_label('chapter4chars2').search_if('chapter4count >= 7')),
-        ("bannermod_c4pm2",ml.find_label('chapter4chars3').search_if('chapter4count >= 7')),
+        ("four_aesthetics_bannermenu_c1pm1",c1csplayed.branch().search_say("(What should I do?)")),
+        ("four_aesthetics_bannermenu_c1pm2",c1csplayed.branch('chapter1csplayed == 1').search_say("(More free time. What should I do?)")),
+        ("four_aesthetics_bannermenu_c2pm1",c2csplayed.branch().search_if('chapter2count >= 7')),
+        ("four_aesthetics_bannermenu_c2pm2",c2csplayed.branch('chapter2csplayed == 1').search_if('chapter2count >= 7')),
+        ("four_aesthetics_bannermenu_c3pm1",ml.find_label('chapter3chars2').search_if('chapter3count >= 7')),
+        ("four_aesthetics_bannermenu_c3pm2",ml.find_label('chapter3chars3').search_if('chapter3count >= 7')),
+        ("four_aesthetics_bannermenu_c4pm1",ml.find_label('chapter4chars2').search_if('chapter4count >= 7')),
+        ("four_aesthetics_bannermenu_c4pm2",ml.find_label('chapter4chars3').search_if('chapter4count >= 7')),
     ]
 
     for tag, paginationif in cpaginationifs:
@@ -65,11 +65,11 @@ def link_bannermod():
         .search_say("(Today is the day of the big fireworks. Who shall I bring?)") \
         ._search(lambda n: isinstance(n.next, ast.Menu), 50, "Chapter 5 character menu not within 50 nodes of 'if loremdead == False'")
 
-    ml.ast_utils._create_hook(node_from=c5menutrailer.node, func=_show_charmenu, tag="c5pm") 
+    ml.ast_utils._create_hook(node_from=c5menutrailer.node, func=_show_charmenu, tag="four_aesthetics_bannermenu_c5pm") 
 
 @loadable_mod
-class BannerMod(Mod):
-    name = "BannerMenu"
+class AwSWMod(Mod):
+    name = "4onen's Aesthetic Tweaks"
     version = "v0.5"
     author = "4onen"
     nsfw = False
@@ -85,7 +85,7 @@ class BannerMod(Mod):
         link_bannermod()
 
         if has_mod("Chaos_Knight core mod."):
-            register_raw_banner("Meet with Naomi.",'bannermod_four_naomibanner','naomistatus')
+            register_raw_banner("Meet with Naomi.",'four_aesthetics_naomibanner','naomistatus')
 
     @staticmethod
     def mod_complete():

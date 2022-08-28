@@ -2,21 +2,21 @@ import renpy
 import renpy.display.im as im
 
 banners = {
-    "Meet with Remy.": ('bannermod_four_remybanner','remystatus'),
-    "Meet with Anna.": ('bannermod_four_annabanner','annastatus'),
-    "Meet with Bryce.": ('bannermod_four_brycebanner','brycestatus'),
-    "Meet with Adine.": ('bannermod_four_adinebanner','adinestatus'),
-    "Order some lunch.": ('bannermod_four_lunchboxbanner',''),
-    "Meet with Lorem.": ('bannermod_four_lorembanner','loremstatus'),
-    "Meet with Sebastian.": ('bannermod_four_sebastianbanner','sebastianstatus'),
-    "Meet with Emera.": ('bannermod_four_emerabanner',''),
-    "Meet with the store clerk.": ('bannermod_four_clerkbanner', ''),
-    "Meet with Katsuharu.": ('bannermod_four_katsubanner', ''),
-    "Meet with Kevin.": ('bannermod_four_kevinbanner', ''),
-    "Meet with Zhong.": ('bannermod_four_zhongbanner', ''),
-    "Get some well deserved rest.": ('bannermod_four_pillowbanner', ''),
-    "Spend the day reading.": ('bannermod_four_bookbanner', ''),
-    "Listen to your records.": ('bannermod_four_recordplayerbanner', ''),
+    "Meet with Remy.": ('four_aesthetics_remybanner','remystatus'),
+    "Meet with Anna.": ('four_aesthetics_annabanner','annastatus'),
+    "Meet with Bryce.": ('four_aesthetics_brycebanner','brycestatus'),
+    "Meet with Adine.": ('four_aesthetics_adinebanner','adinestatus'),
+    "Order some lunch.": ('four_aesthetics_lunchboxbanner',''),
+    "Meet with Lorem.": ('four_aesthetics_lorembanner','loremstatus'),
+    "Meet with Sebastian.": ('four_aesthetics_sebastianbanner','sebastianstatus'),
+    "Meet with Emera.": ('four_aesthetics_emerabanner',''),
+    "Meet with the store clerk.": ('four_aesthetics_clerkbanner', ''),
+    "Meet with Katsuharu.": ('four_aesthetics_katsubanner', ''),
+    "Meet with Kevin.": ('four_aesthetics_kevinbanner', ''),
+    "Meet with Zhong.": ('four_aesthetics_zhongbanner', ''),
+    "Get some well deserved rest.": ('four_aesthetics_pillowbanner', ''),
+    "Spend the day reading.": ('four_aesthetics_bookbanner', ''),
+    "Listen to your records.": ('four_aesthetics_recordplayerbanner', ''),
 }
 
 def register_raw_banner(prompt, im_name, statusvariable=''):
