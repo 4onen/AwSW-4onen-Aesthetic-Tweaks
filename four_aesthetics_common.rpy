@@ -2,8 +2,6 @@ init:
     image four_aesthetics_arrow = im.Scale("image/ui/filepicker/Btn_Next.png", 450, 960)
     image four_aesthetics_arrow flip = im.Flip(im.Scale("image/ui/filepicker/Btn_Next.png", 450, 960), horizontal=True)
 
-    image four_aesthetics_menu_frame = Frame("image/ui/nvlscreen.png",195,195,tile=True)
-
     ####
     # Main cast
     ####
@@ -190,7 +188,6 @@ init:
 
 init python:
     style.four_aesthetics_banners_menu_window = Style(style.nvl_window)
-    style.four_aesthetics_banners_menu_window.background = 'four_aesthetics_menu_frame'
     style.four_aesthetics_banners_menu_window.yfill = False
     style.four_aesthetics_banners_menu_window.xpadding = 20
     style.four_aesthetics_banners_menu_window.ypadding = 30
@@ -212,6 +209,7 @@ screen four_aesthetics_banners_choice(items):
     default nonbanneroffset = 0
     window:
         style "four_aesthetics_banners_menu_window"
+        background (Frame("image/ui/nvlscreen.png" if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap("image/ui/nvlscreen.png", getattr(getattr(renpy.store, 'c', None), '__dict__', dict(color='#F0F')).get('color','#FF0')), 195, 195, tile=True))
         xalign 0.5
         yalign 0.0
 
@@ -319,3 +317,30 @@ label bannermod_test_scene:
         ))
 
     $ renpy.quit()
+
+
+screen four_aesthetics_modsettings():
+    tag smallscreen2
+    modal True
+    window id "four_aesthetics_modsettings" at popup2:
+        style "smallwindow"
+        vbox:
+            align (0.5, 0.5)
+
+            hbox:
+                align (0.5, 0.5)
+                spacing 10
+
+                imagebutton:
+                    xcenter 0.5
+                    ycenter 0.5
+                    idle im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70)
+                    hover im.Recolor(im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70), 64, 64, 64)
+                    selected_idle im.Scale("ui/nsfw_chbox-checked.png", 70, 70)
+                    selected_hover im.Recolor(im.Scale("ui/nsfw_chbox-checked.png", 70, 70), 64, 64, 64)
+                    action [MTSTogglePersistentBool("four_aesthetics_disable_character_trim_color"),
+                            Play("audio", "se/sounds/yes.wav")]
+                    hovered Play("audio", "se/sounds/select.ogg")
+                    focus_mask None
+                text _("Disable menu trim recoloring")
+        imagebutton idle "image/ui/close_idle.png" hover "image/ui/close_hover.png" action [Show("_ml_mod_settings"), Play("audio", "se/sounds/close.ogg")] hovered Play("audio", "se/sounds/select.ogg") style "smallwindowclose" at nav_button

@@ -67,6 +67,40 @@ def link_bannermod():
 
     ml.ast_utils._create_hook(node_from=c5menutrailer.node, func=_show_charmenu, tag="four_aesthetics_bannermenu_c5pm") 
 
+def link_trimrecolor():
+    say_box_trimrecolor = "Frame('image/ui/nvlscreen.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/dialogbox.png', renpy.get_widget_properties('who').get('color',None) or (persistent.playercolor if not who else None) or '#FFF'), 0, 0)"
+
+    saywindow = ( ml.find_screen('say')
+        .search_if()
+        .branch('not two_window')
+        .search_window()
+    )
+
+    saywindow.node.keyword.append(('background', say_box_trimrecolor))
+
+    saywindow_line_replacement = ( ml.overlay.Overlay()
+        .add("add renpy.display.im.Recolor('image/ui/dialogline.png', *renpy.easy.color(renpy.get_widget_properties('who').get('color',None) or '#FFF'))")
+        .build().first()
+    )
+
+    ( saywindow.branch().first().branch()
+        .search_if().branch('who')
+        .search_add()
+        .replace_by(saywindow_line_replacement)
+    )
+
+    menu_bg_recolor = ( ml.overlay.Overlay()
+        .add("add ('image/ui/choicebg.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/choicebg.png', persistent.playercolor or '#00F'))")
+        .build().first()
+    )
+
+    ( ml.find_screen('choice')
+        .search_add()
+        .replace_by(menu_bg_recolor)
+    )
+
+
+
 @loadable_mod
 class AwSWMod(Mod):
     name = "4onen's Aesthetic Tweaks"
@@ -83,9 +117,12 @@ class AwSWMod(Mod):
         # )
 
         link_bannermod()
+        link_trimrecolor()
 
         if has_mod("Chaos_Knight core mod."):
             register_raw_banner("Meet with Naomi.",'four_aesthetics_naomibanner','naomistatus')
+
+        ml.register_mod_settings(cls, 'four_aesthetics_modsettings')
 
     @staticmethod
     def mod_complete():
