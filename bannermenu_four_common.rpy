@@ -1,6 +1,6 @@
 init:
-    image bannermod_four_arrow = "ui/bannermod/arrow.png"
-    image bannermod_four_arrow flip = im.Flip("ui/bannermod/arrow.png", horizontal=True)
+    image bannermod_four_arrow = im.Scale("image/ui/filepicker/Btn_Next.png", 450, 960)
+    image bannermod_four_arrow flip = im.Flip(im.Scale("image/ui/filepicker/Btn_Next.png", 450, 960), horizontal=True)
 
     image bannermod_four_menu_frame = Frame("image/ui/nvlscreen.png",195,195,tile=True)
 
