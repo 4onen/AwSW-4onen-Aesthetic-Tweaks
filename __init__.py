@@ -99,6 +99,12 @@ def link_trimrecolor():
         .replace_by(menu_bg_recolor)
     )
 
+    nvlwindow_box_trimrecolor = "Frame('image/ui/nvlscreen.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/nvlscreen.png', persistent.playercolor or '#00F'), 0, 0)"
+
+    saywindow = ( ml.find_screen('nvl')
+        .search_window()
+    )
+    saywindow.node.keyword.append(('background', nvlwindow_box_trimrecolor))
 
 
 @loadable_mod
