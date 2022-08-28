@@ -209,7 +209,7 @@ screen four_aesthetics_banners_choice(items):
     default nonbanneroffset = 0
     window:
         style "four_aesthetics_banners_menu_window"
-        background (Frame("image/ui/nvlscreen.png" if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap("image/ui/nvlscreen.png", getattr(getattr(renpy.store, 'c', None), '__dict__', dict(color='#F0F')).get('color','#FF0')), 195, 195, tile=True))
+        background (Frame("image/ui/nvlscreen.png" if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap("image/ui/nvlscreen.png", persistent.playercolor or '#FFF'), 195, 195, tile=True))
         xalign 0.5
         yalign 0.0
 
