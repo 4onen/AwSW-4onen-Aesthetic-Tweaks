@@ -70,8 +70,13 @@ def link_bannermod():
 def link_trimrecolor():
     say_box_trimrecolor = "Frame('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/dialogbox.png', renpy.get_widget_properties('who').get('color',None) or (persistent.playercolor if not who else None) or '#FFF'), 0, 0)"
 
-    saywindow = ( ml.find_screen('say')
-        .search_if()
+    saywindowif = ml.find_screen('say').search_if()
+
+    if not hasattr(saywindowif, 'branch'):
+        print("4onen's Aesthetic Tweaks !!WARNING!!: MagmaLink version is too old to safely deconstruct the `say` screen. Trim recoloring will be disabled...")
+        return
+
+    ( saywindow
         .branch('not two_window')
         .search_window()
     )

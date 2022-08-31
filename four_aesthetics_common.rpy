@@ -153,6 +153,7 @@ init:
 
 
 init python in four_aesthetics:
+    import jz_magmalink as ml
     import four_aesthetics_banners
     from four_aesthetics_banners import select_banners
 
@@ -311,13 +312,14 @@ screen four_aesthetics_banners_choice(items):
 label bannermod_test_scene:
     python:
         print(renpy.display_menu(
-            [ (p,p) for p in four_aesthetics_banners.four_aesthetics.banners.keys()]+
+            [ (p,p) for p in four_aesthetics.four_aesthetics.banners.keys()]+
             [ ("Spend the day reading.","read") ],
             screen='four_aesthetics_banners_choice'
         ))
 
     $ renpy.quit()
 
+define four_aesthetics_trimrecolor_installed = hasattr(four_aesthetics.ml.find_screen('say').search_if(), 'branch')
 
 screen four_aesthetics_modsettings():
     tag smallscreen2
@@ -327,20 +329,23 @@ screen four_aesthetics_modsettings():
         vbox:
             align (0.5, 0.5)
 
-            hbox:
-                align (0.5, 0.5)
-                spacing 10
+            if four_aesthetics_trimrecolor_installed:
+                hbox:
+                    align (0.5, 0.5)
+                    spacing 10
 
-                imagebutton:
-                    xcenter 0.5
-                    ycenter 0.5
-                    idle im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70)
-                    hover im.Recolor(im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70), 64, 64, 64)
-                    selected_idle im.Scale("ui/nsfw_chbox-checked.png", 70, 70)
-                    selected_hover im.Recolor(im.Scale("ui/nsfw_chbox-checked.png", 70, 70), 64, 64, 64)
-                    action [MTSTogglePersistentBool("four_aesthetics_disable_character_trim_color"),
-                            Play("audio", "se/sounds/yes.wav")]
-                    hovered Play("audio", "se/sounds/select.ogg")
-                    focus_mask None
-                text _("Disable menu trim recoloring")
+                    imagebutton:
+                        xcenter 0.5
+                        ycenter 0.5
+                        idle im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70)
+                        hover im.Recolor(im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70), 64, 64, 64)
+                        selected_idle im.Scale("ui/nsfw_chbox-checked.png", 70, 70)
+                        selected_hover im.Recolor(im.Scale("ui/nsfw_chbox-checked.png", 70, 70), 64, 64, 64)
+                        action [MTSTogglePersistentBool("four_aesthetics_disable_character_trim_color"),
+                                Play("audio", "se/sounds/yes.wav")]
+                        hovered Play("audio", "se/sounds/select.ogg")
+                        focus_mask None
+                    text _("Disable menu trim recoloring")
+            else:
+                text _("WARNING: MagmaLink version too old to support menu trim recoloring. Please update.")
         imagebutton idle "image/ui/close_idle.png" hover "image/ui/close_hover.png" action [Show("_ml_mod_settings"), Play("audio", "se/sounds/close.ogg")] hovered Play("audio", "se/sounds/select.ogg") style "smallwindowclose" at nav_button
