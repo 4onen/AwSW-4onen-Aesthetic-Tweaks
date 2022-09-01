@@ -346,6 +346,22 @@ screen four_aesthetics_modsettings():
                         hovered Play("audio", "se/sounds/select.ogg")
                         focus_mask None
                     text _("Disable menu trim recoloring")
+                hbox:
+                    align (0.5, 0.5)
+                    spacing 10
+
+                    imagebutton:
+                        xcenter 0.5
+                        ycenter 0.5
+                        idle im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70)
+                        hover im.Recolor(im.Scale("ui/nsfw_chbox-unchecked.png", 70, 70), 64, 64, 64)
+                        selected_idle im.Scale("ui/nsfw_chbox-checked.png", 70, 70)
+                        selected_hover im.Recolor(im.Scale("ui/nsfw_chbox-checked.png", 70, 70), 64, 64, 64)
+                        action [MTSTogglePersistentBool("four_aesthetics_disable_scale_color"),
+                                Play("audio", "se/sounds/yes.wav")]
+                        hovered Play("audio", "se/sounds/select.ogg")
+                        focus_mask None
+                    text _("Disable say box scale recoloring")
             else:
                 text _("WARNING: MagmaLink version too old to support menu trim recoloring. Please update.")
         imagebutton idle "image/ui/close_idle.png" hover "image/ui/close_hover.png" action [Show("_ml_mod_settings"), Play("audio", "se/sounds/close.ogg")] hovered Play("audio", "se/sounds/select.ogg") style "smallwindowclose" at nav_button

@@ -68,7 +68,7 @@ def link_bannermod():
     ml.ast_utils._create_hook(node_from=c5menutrailer.node, func=_show_charmenu, tag="four_aesthetics_bannermenu_c5pm") 
 
 def link_trimrecolor():
-    say_box_trimrecolor = "Frame('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/dialogbox.png', renpy.get_widget_properties('who').get('color',None) or (persistent.playercolor if not who else None) or '#FFF'), 0, 0)"
+    say_box_trimrecolor = "Frame('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_scale_color else 'image/ui/four_aesthetics/dialogbox.png', renpy.get_widget_properties('who').get('color',None) or (persistent.playercolor if not who else None) or '#FFF'), 0, 0)"
 
     saywindowif = ml.find_screen('say').search_if()
 
@@ -76,7 +76,7 @@ def link_trimrecolor():
         print("4onen's Aesthetic Tweaks !!WARNING!!: MagmaLink version is too old to safely deconstruct the `say` screen. Trim recoloring will be disabled...")
         return
 
-    ( saywindow
+    saywindow = ( saywindowif
         .branch('not two_window')
         .search_window()
     )
