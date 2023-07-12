@@ -38,6 +38,36 @@ def _show_charmenu(calling_node):
 
     return True
 
+def _show_c5doormenu(calling_node):
+    ast.next_node(calling_node.next)
+    ast.statement_name("four_aesthetics_c5doors_menu")
+    
+    menu = ml.node(calling_node).search_menu()
+    choices = []
+
+    for i, (label, condition, block) in enumerate(menu.node.items):
+        if config.say_menu_text_filter:
+            label = config.say_menu_text_filter(label)
+        
+        if block is None:
+            renpy.error("Angels with Scaly Wings character menus should not have menu labels without blocks.")
+        else:
+            if python.py_eval(condition):
+                choices.append(((label % exports.tag_quoting_dict) if config.old_substitutions else label, i))
+
+    ast.say_menu_with(menu.node.with_, game.interface.set_transition)
+
+    if not choices:
+        return None
+
+    choice = exports.display_menu(choices, screen='four_aesthetics_c5doors_choice')
+
+    if choice is not None:
+        ast.next_node(menu.node.items[choice][2][0])
+
+    return True
+
+
 def link_bannermod():
     c1csplayed = ml.find_label("chapter1chars") \
         .search_if("chapter1csplayed == 0")
@@ -61,11 +91,12 @@ def link_bannermod():
         # Disabling of Saunders' pagination is left to MagmaLink
         ml.ast_utils._create_hook(node_from=paginationif.node, func=_show_charmenu, tag=tag)
 
+def link_c5doors():
     c5menutrailer = ml.find_label('chapter5') \
         .search_say("(Today is the day of the big fireworks. Who shall I bring?)") \
         ._search(lambda n: isinstance(n.next, ast.Menu), 50, "Chapter 5 character menu not within 50 nodes of 'if loremdead == False'")
 
-    ml.ast_utils._create_hook(node_from=c5menutrailer.node, func=_show_charmenu, tag="four_aesthetics_bannermenu_c5pm") 
+    ml.ast_utils._create_hook(node_from=ml.find_label('chapter5').search_menu(depth=400).node, func=_show_c5doormenu, tag="four_aesthetics_c5doors_menu")
 
 def link_trimrecolor():
     say_box_trimrecolor = "Frame('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_scale_color else 'image/ui/four_aesthetics/dialogbox.png', renpy.get_widget_properties('who').get('color',None) or (persistent.playercolor if not who else None) or '#FFF'), 0, 0)"
@@ -124,7 +155,7 @@ class AwSWMod(Mod):
     def mod_load(cls):
         # Testing link
         # ( ml.find_label('seccont')
-        #     .hook_to('bannermod_test_scene')
+        #     .hook_to('four_c5doorsmod_test_scene')
         # )
 
         link_bannermod()

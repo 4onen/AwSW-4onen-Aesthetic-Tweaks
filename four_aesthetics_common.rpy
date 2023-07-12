@@ -63,6 +63,11 @@ init:
         (75,310), im.Crop("cr/lorem_happy.png", (455,0,325,650)),
         (0,310), im.Crop("cr/lorem_happy.png", (380,0,80,200)),
     )
+    image four_aesthetics_lorem5door neutral = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 224, 188, 129),
+        (45,0), im.Crop("cr/lorem_sad.png", (0,0,700,960)),
+    )
 
 
     image four_aesthetics_remybanner neutral = im.Composite(
@@ -76,6 +81,26 @@ init:
         (0,0), im.Recolor("ui/four_aesthetics/banner.png", 147, 54, 62),
         (0,108), im.Crop("cr/remy_smile.png", (0,0,400,960)),
         (0,108), im.Crop("cr/remy_smile.png", (0,0,515,450)),
+    )
+    image four_aesthetics_remyc5door neutral = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
+        (45,0), im.Crop("cr/remy_sad.png", (0,0,700,960)),
+    )
+    image four_aesthetics_remyc5door neutral selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
+        (45,0), im.Crop("cr/remy_normal.png", (0,0,700,960)),
+    )
+    image four_aesthetics_remyc5door good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
+        (45,0), im.Crop("cr/remy_normal.png", (0,0,700,960)),
+    )
+    image four_aesthetics_remyc5door good selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
+        (45,0), im.Crop("cr/remy_smile.png", (0,0,700,960)),
     )
 
     ####
@@ -155,12 +180,16 @@ init:
 init python in four_aesthetics:
     import jz_magmalink as ml
     import four_aesthetics_banners
-    from four_aesthetics_banners import select_banners
+    from four_aesthetics_banners import select_banners, select_c5doors
 
     select_banners = renpy.pure(select_banners)
+    select_c5doors = renpy.pure(select_c5doors)
 
     n_banner = 5
     n_non_banner = 3
+
+    n_c5door = 3
+    n_non_c5door = 3
 
 init:
     image four_aesthetics_pillowbanner neutral = four_aesthetics.four_aesthetics_banners.blue_to_playercolor_displayable(
@@ -187,6 +216,13 @@ init:
         (0,0), "ui/four_aesthetics/record_player.png",
     )
 
+    image four_aesthetics_alonec5door = four_aesthetics.four_aesthetics_banners.recolor_to_playercolor_displayable(
+        im.Composite(
+            (820,960),
+            (0,0), "ui/four_aesthetics/c5door.png",
+        )
+    )
+
 init python:
     style.four_aesthetics_banners_menu_window = Style(style.nvl_window)
     style.four_aesthetics_banners_menu_window.yfill = False
@@ -197,12 +233,31 @@ init python:
     style.four_aesthetics_banners_menu_banner.xminimum = 0
     style.four_aesthetics_banners_menu_banner.xmaximum = 225
 
+    style.four_aesthetics_c5doors_menu_window = Style(style.nvl_window)
+    style.four_aesthetics_c5doors_menu_window.yfill = False
+    style.four_aesthetics_c5doors_menu_window.xpadding = 20
+    style.four_aesthetics_c5doors_menu_window.ypadding = 30
+
+    style.four_aesthetics_c5doors_menu_c5door = Style(style.menu_choice_button)
+    style.four_aesthetics_c5doors_menu_c5door.xminimum = 0
+    style.four_aesthetics_c5doors_menu_c5door.xmaximum = 410
+    style.four_aesthetics_c5doors_menu_c5door.ymaximum = 550
+
 
 transform four_aesthetics_banners_menu_selection_alpha:
     on idle:
         linear 0.25 alpha 0.7
     on hover:
         alpha 1.0
+
+
+transform four_aesthetics_c5doors_menu_selection_alpha:
+    on idle:
+        linear 0.25 alpha 0.5
+        linear 0.25 zoom 1.0
+    on hover:
+        alpha 1.0
+        zoom 1.02
 
 
 screen four_aesthetics_banners_choice(items):
@@ -307,9 +362,7 @@ screen four_aesthetics_banners_choice(items):
 
                         text "[[Show more options.]" style "menu_choice"
 
-
-
-label bannermod_test_scene:
+label four_bannermod_test_scene:
     python:
         print(renpy.display_menu(
             [ (p,p) for p in four_aesthetics.four_aesthetics.banners.keys()]+
@@ -318,6 +371,135 @@ label bannermod_test_scene:
         ))
 
     $ renpy.quit()
+
+
+screen four_aesthetics_c5doors_choice(items):
+    default c5dooroffset = 0
+    default nonc5dooroffset = 0
+    default button_hovered = None
+    window:
+        style "four_aesthetics_c5doors_menu_window"
+        background (Frame("image/ui/nvlscreen.png" if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap("image/ui/nvlscreen.png", persistent.playercolor or '#FFF'), 195, 195, tile=True))
+        xalign 0.5
+        yalign 0.0
+
+        has vbox at zoom_fade_in:
+            style "nvl_vbox"
+            xalign 0.5
+
+        if renpy.get_screen("say"):
+            ysize 700
+        else:
+            yfill True
+
+        $ c5door_items, non_c5doors, c5doors_data = four_aesthetics.select_c5doors(items)
+
+        if c5door_items:
+            hbox:
+                yalign 0.0
+                xalign 0.5
+
+                if len(c5door_items) > four_aesthetics.n_c5door:
+                    button at four_aesthetics_c5doors_menu_selection_alpha:
+                        action [
+                            SetScreenVariable('c5dooroffset', c5dooroffset-four_aesthetics.n_c5door if c5dooroffset >= four_aesthetics.n_c5door else len(c5door_items)-(len(c5door_items) % four_aesthetics.n_c5door)),
+                            Play("audio", "se/sounds/select3.ogg")
+                        ]
+                        hovered Play("audio", "se/sounds/select.ogg")
+                        style "four_aesthetics_c5doors_menu_c5door"
+
+                        add 'four_aesthetics_arrow flip':
+                            zoom 0.5
+
+                for caption, action, _ in c5door_items[c5dooroffset:c5dooroffset+four_aesthetics.n_c5door]:
+                    if caption not in ["[[Show more c5doors.]","[[Show prev c5doors.]"]:
+                        python:
+                            c5door_image, c5door_status = c5doors_data[caption]
+
+                        button at four_aesthetics_c5doors_menu_selection_alpha:
+                            action [action, Play("audio", "se/sounds/select3.ogg")]
+                            hovered [Play("audio", "se/sounds/select.ogg"), SetScreenVariable('button_hovered', caption)]
+                            unhovered SetScreenVariable('button_hovered', None)
+                            style "four_aesthetics_c5doors_menu_c5door"
+
+                            if button_hovered == caption:
+                                add (c5door_image+(c5door_status(True) if c5door_status else "")):
+                                    zoom 0.5
+                            else:
+                                add (c5door_image+(c5door_status(False) if c5door_status else "")):
+                                    zoom 0.5
+
+                            text caption style "menu_choice":
+                                xalign 0.5
+                                yanchor 0.0
+                                ypos 480
+
+                if len(c5door_items) > four_aesthetics.n_c5door:
+                    button at four_aesthetics_c5doors_menu_selection_alpha:
+                        action [
+                            SetScreenVariable('c5dooroffset', 0 if c5dooroffset+four_aesthetics.n_c5door>=len(c5door_items) else c5dooroffset+four_aesthetics.n_c5door),
+                            Play("audio", "se/sounds/select3.ogg")
+                        ]
+                        hovered Play("audio", "se/sounds/select.ogg")
+                        style "four_aesthetics_c5doors_menu_c5door"
+
+                        add 'four_aesthetics_arrow':
+                            zoom 0.5
+
+        if c5door_items and non_c5doors:
+            fixed:
+                xfill True
+                ysize 5
+                add 'white'
+
+        if non_c5doors:
+            vbox:
+                style "menu"
+                xalign 0.5
+
+                for caption, action, _ in non_c5doors[nonc5dooroffset:nonc5dooroffset+four_aesthetics.n_non_c5door]:
+
+                    if action:
+
+                        button:
+                            action [action, Play("audio", "se/sounds/select3.ogg")]
+                            hovered Play("audio", "se/sounds/select.ogg")
+                            style "menu_choice_button"
+
+                            text caption style "menu_choice"
+
+                    else:
+                        text caption style "menu_caption"
+
+                if len(non_c5doors) > four_aesthetics.n_non_c5door + 1:
+                    button:
+                        action [
+                            SetScreenVariable('nonc5dooroffset', 0 if nonc5dooroffset+four_aesthetics.n_non_c5door>=len(non_c5doors) else nonc5dooroffset+four_aesthetics.n_non_c5door), 
+                            Play("audio", "se/sounds/select3.ogg")
+                        ]
+                        hovered Play("audio", "se/sounds/select.ogg")
+                        style "menu_choice_button"
+
+                        text "[[Show more options.]" style "menu_choice"
+
+
+label four_c5doorsmod_test_scene:
+    show black with dissolve
+    show o3 with dissolve
+    $ renpy.pause(0.5)
+    python:
+        print(renpy.display_menu(
+            [
+                ("Go alone.", "Go alone."), 
+                ("Remy.", "Remy."),
+            ],
+            # [ (p,p) for p in four_aesthetics.four_aesthetics.c5doors.keys()],
+            screen='four_aesthetics_c5doors_choice'
+        ))
+
+    $ renpy.quit()
+
+
 
 define four_aesthetics_trimrecolor_installed = hasattr(four_aesthetics.ml.find_screen('say').search_if(), 'branch')
 

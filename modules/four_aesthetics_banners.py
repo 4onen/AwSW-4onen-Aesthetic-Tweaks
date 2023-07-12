@@ -29,6 +29,39 @@ def select_banners(items):
         (banner_items if item[0] in banners else non_banners).append(item)
     return banner_items, non_banners
 
+
+
+c5doors = {
+    "Remy.": (
+        'four_aesthetics_remyc5door',
+        lambda selected: (" good selected" if selected else " good") if getattr(renpy.store, 'remygoodending', False) else (" neutral selected" if selected else " neutral")
+    ),
+    # "Anna.": (
+    #     'four_aesthetics_annac5door',
+    #     lambda selected: (" good selected" if selected else " good") if getattr(renpy.store, 'annagoodending', False) else (" neutral selected" if selected else " neutral")
+    # ),
+    # "Bryce.": ('four_aesthetics_brycec5door', lambda selected: " good" if getattr(renpy.store, 'brycegoodending', False) else " neutral"),
+    # "Adine.": ('four_aesthetics_adinec5door', None),
+    # "Lorem.": ('four_aesthetics_loremc5door', lambda selected: " good" if getattr(renpy.store, 'loremstatus', "neutral") == "good" else " neutral"),
+    "Go alone.": ('four_aesthetics_alonec5door', None), #lambda selected: " good" if getattr(renpy.store, 'evilpoints', 0) < 30 else " neutral"),
+    # "Everyone.": ('four_aesthetics_everyonec5door', None),
+}
+
+def register_raw_c5door(prompt, im_name, statusvariable=''):
+    banners[prompt] = (im_name, statusvariable)
+
+def select_c5doors(items):
+    door_items = []
+    non_doors = []
+    for item in items:
+        (door_items if item[0] in c5doors else non_doors).append(item)
+
+    data = {door[0]: c5doors[door[0]] for door in door_items}
+
+    return door_items, non_doors, data
+
+
+
 class BlueMap(im.MatrixColor):
     """
     Retints the image so that blues remap to the
@@ -46,8 +79,14 @@ class BlueMap(im.MatrixColor):
                                                 1, 0,      0, 1, 0)
         super(BlueMap, self).__init__(im, matrix, **properties)
 
-def _bannermod_playercolor_update_fn(_displaytime, _anydisplaytime, im):
+def _bannermod_blue_playercolor_update_fn(_displaytime, _anydisplaytime, im):
     return (BlueMap(im, renpy.store.persistent.playercolor),None)
 
 def blue_to_playercolor_displayable(im):
+    return renpy.display.layout.DynamicDisplayable(_bannermod_blue_playercolor_update_fn,im)
+
+def _bannermod_playercolor_update_fn(_displaytime, _anydisplaytime, image):
+    return (im.Color(image, renpy.store.persistent.playercolor),None)
+
+def recolor_to_playercolor_displayable(im):
     return renpy.display.layout.DynamicDisplayable(_bannermod_playercolor_update_fn,im)
