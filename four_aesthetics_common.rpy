@@ -288,6 +288,16 @@ init:
     )
 
     image four_aesthetics_alonec5door playercolorborder = "ui/four_aesthetics/c5door.png"
+    image four_aesthetics_alonec5door playercolorborder evil = im.Composite(
+        (820, 960),
+        (0,0), "ui/four_aesthetics/c5door.png",
+        (375,600), im.Crop(im.Recolor("cr/reza_gunpoint.png", 25, 25, 25), (0,250,400,130)),
+    )
+    image four_aesthetics_alonec5door playercolorborder evil selected = im.Composite(
+        (820, 960),
+        (0,0), "ui/four_aesthetics/c5door.png",
+        (375,600), im.Crop(im.Recolor("cr/reza_gunpoint.png", 35, 35, 35), (0,250,400,130)),
+    )
     image four_aesthetics_everyonec5door playercolorborder = im.Composite(
         (820, 960),
         (0,0), "ui/four_aesthetics/c5doorx.png",

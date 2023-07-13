@@ -52,7 +52,7 @@ c5doors = {
         'four_aesthetics_remyc5door',
         lambda selected: (" good selected" if selected else " good") if getattr(renpy.store, 'remygoodending', False) else (" neutral selected" if selected else " neutral")
     ),
-    "Go alone.": ('four_aesthetics_alonec5door playercolorborder', None), #lambda selected: " good" if getattr(renpy.store, 'evilpoints', 0) < 30 else " neutral"),
+    "Go alone.": ('four_aesthetics_alonec5door playercolorborder', lambda selected: "" if getattr(renpy.store, 'evilpoints', 0) < 30 else (" evil selected" if selected else " evil")),
     "Everyone.": ('four_aesthetics_everyonec5door playercolorborder', lambda selected: " selected" if selected else ""),
 }
 
