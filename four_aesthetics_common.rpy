@@ -89,6 +89,21 @@ init:
         (-40,70), im.Crop("cr/bryce_smirk_b.png", (0,0,440,960)),
         (-40,70), im.Crop("cr/bryce_smirk_b.png", (0,0,545,230)),
     )
+    image four_aesthetics_brycec5door = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 94, 132, 85),
+        (45,70), im.Crop("cr/bryce_sad.png", (0,0,700,958)),
+    )
+    image four_aesthetics_brycec5door neutral= im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 94, 132, 85),
+        (45,70), im.Crop("cr/bryce_normal.png", (0,0,700,958)),
+    )
+    image four_aesthetics_brycec5door good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 94, 132, 85),
+        (45,70), im.Crop("cr/bryce_flirty.png", (0,0,700,958)),
+    )
 
 
     image four_aesthetics_lorembanner neutral = im.Composite(
