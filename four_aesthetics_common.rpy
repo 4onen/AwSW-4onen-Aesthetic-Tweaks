@@ -440,13 +440,13 @@ screen four_aesthetics_c5doors_choice(items):
                 xalign 0.5
 
                 if len(c5door_items) > four_aesthetics.n_c5door:
-                    button at four_aesthetics_c5doors_menu_selection_alpha:
+                    button at four_aesthetics_banners_menu_selection_alpha:
                         action [
                             SetScreenVariable('c5dooroffset', c5dooroffset-four_aesthetics.n_c5door if c5dooroffset >= four_aesthetics.n_c5door else len(c5door_items)-(len(c5door_items) % four_aesthetics.n_c5door)),
                             Play("audio", "se/sounds/select3.ogg")
                         ]
                         hovered Play("audio", "se/sounds/select.ogg")
-                        style "four_aesthetics_c5doors_menu_c5door"
+                        style "four_aesthetics_banners_menu_banner"
 
                         add 'four_aesthetics_arrow flip':
                             zoom 0.5
@@ -475,13 +475,13 @@ screen four_aesthetics_c5doors_choice(items):
                                 ypos 480
 
                 if len(c5door_items) > four_aesthetics.n_c5door:
-                    button at four_aesthetics_c5doors_menu_selection_alpha:
+                    button at four_aesthetics_banners_menu_selection_alpha:
                         action [
                             SetScreenVariable('c5dooroffset', 0 if c5dooroffset+four_aesthetics.n_c5door>=len(c5door_items) else c5dooroffset+four_aesthetics.n_c5door),
                             Play("audio", "se/sounds/select3.ogg")
                         ]
                         hovered Play("audio", "se/sounds/select.ogg")
-                        style "four_aesthetics_c5doors_menu_c5door"
+                        style "four_aesthetics_banners_menu_banner"
 
                         add 'four_aesthetics_arrow':
                             zoom 0.5
