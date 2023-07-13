@@ -35,6 +35,31 @@ init:
         (0,133), im.Crop("cr/anna_smirk_b.png",(0,0,400,827)),
         (0,133), im.Crop("cr/anna_smirk_b.png",(0,0,455,140)),
     )
+    image four_aesthetics_annac5door neutral = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 121, 77, 128),
+        (45,133), im.Crop("cr/anna_cry.png", (0,0,700,825)),
+    )
+    image four_aesthetics_annac5door neutral selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 121, 77, 128),
+        (45,133), im.Crop("cr/anna_normal.png", (0,0,700,825)),
+    )
+    image four_aesthetics_annac5door good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 121, 77, 128),
+        (45,133), im.Crop("cr/anna_sad.png", (0,0,700,825)),
+    )
+    image four_aesthetics_annac5door good selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 121, 77, 128),
+        (45,133), im.Crop("cr/anna_normal.png", (0,0,700,825)),
+    )
+    image four_aesthetics_annac5door good selected good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 121, 77, 128),
+        (45,133), im.Crop("cr/anna_smirk.png", (0,0,700,825)),
+    )
 
 
     image four_aesthetics_brycebanner neutral = im.Composite(
@@ -85,22 +110,22 @@ init:
     image four_aesthetics_remyc5door neutral = im.Composite(
         (820,960),
         (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
-        (45,0), im.Crop("cr/remy_sad.png", (0,0,700,960)),
+        (45,0), im.Crop("cr/remy_sad.png", (0,0,700,958)),
     )
     image four_aesthetics_remyc5door neutral selected = im.Composite(
         (820,960),
         (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
-        (45,0), im.Crop("cr/remy_normal.png", (0,0,700,960)),
+        (45,0), im.Crop("cr/remy_normal.png", (0,0,700,958)),
     )
     image four_aesthetics_remyc5door good = im.Composite(
         (820,960),
         (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
-        (45,0), im.Crop("cr/remy_normal.png", (0,0,700,960)),
+        (45,0), im.Crop("cr/remy_normal.png", (0,0,700,958)),
     )
     image four_aesthetics_remyc5door good selected = im.Composite(
         (820,960),
         (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 147, 54, 62),
-        (45,0), im.Crop("cr/remy_smile.png", (0,0,700,960)),
+        (45,0), im.Crop("cr/remy_smile.png", (0,0,700,958)),
     )
 
     ####
@@ -489,11 +514,7 @@ label four_c5doorsmod_test_scene:
     $ renpy.pause(0.5)
     python:
         print(renpy.display_menu(
-            [
-                ("Go alone.", "Go alone."), 
-                ("Remy.", "Remy."),
-            ],
-            # [ (p,p) for p in four_aesthetics.four_aesthetics.c5doors.keys()],
+            [ (p,p) for p in four_aesthetics.four_aesthetics_banners.c5doors.keys()],
             screen='four_aesthetics_c5doors_choice'
         ))
 
