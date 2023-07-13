@@ -44,7 +44,10 @@ c5doors = {
         'four_aesthetics_brycec5door',
         lambda selected: "" if not selected else (" good" if getattr(renpy.store, 'brycestatus', 'neutral')=='good' else " neutral")
     ),
-    # "Lorem.": ('four_aesthetics_loremc5door', lambda selected: " good" if getattr(renpy.store, 'loremstatus', "neutral") == "good" else " neutral"),
+    "Lorem.": (
+        'four_aesthetics_loremc5door',
+        lambda selected: (" good" if getattr(renpy.store, 'loremstatus', "neutral") == "good" else " neutral") + (" selected" if selected else "")
+    ),
     "Remy.": (
         'four_aesthetics_remyc5door',
         lambda selected: (" good selected" if selected else " good") if getattr(renpy.store, 'remygoodending', False) else (" neutral selected" if selected else " neutral")

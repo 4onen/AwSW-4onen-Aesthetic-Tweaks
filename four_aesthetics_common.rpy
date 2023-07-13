@@ -118,11 +118,27 @@ init:
         (75,310), im.Crop("cr/lorem_happy.png", (455,0,325,650)),
         (0,310), im.Crop("cr/lorem_happy.png", (380,0,80,200)),
     )
-    image four_aesthetics_lorem5door neutral = im.Composite(
+    image four_aesthetics_loremc5door neutral = im.Composite(
         (820,960),
         (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 224, 188, 129),
-        (45,0), im.Crop("cr/lorem_sad.png", (0,0,700,960)),
+        (-155,308), im.Crop("cr/lorem_relieved.png", (0,0,900,650)),
     )
+    image four_aesthetics_loremc5door good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 224, 188, 129),
+        (-155,308), im.Crop("cr/lorem_normal.png", (0,0,900,650)),
+    )
+    image four_aesthetics_loremc5door neutral selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 224, 188, 129),
+        (-155,308), im.Crop("cr/lorem_normal.png", (0,0,900,650)),
+    )
+    image four_aesthetics_loremc5door good selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 224, 188, 129),
+        (-155,308), im.Crop("cr/lorem_happy.png", (0,0,900,650)),
+    )
+
 
 
     image four_aesthetics_remybanner neutral = im.Composite(
