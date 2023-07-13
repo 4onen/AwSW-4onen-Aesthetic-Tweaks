@@ -287,11 +287,20 @@ init:
         (0,0), "ui/four_aesthetics/record_player.png",
     )
 
-    image four_aesthetics_alonec5door = four_aesthetics.four_aesthetics_banners.recolor_to_playercolor_displayable(
-        im.Composite(
-            (820,960),
-            (0,0), "ui/four_aesthetics/c5door.png",
-        )
+    image four_aesthetics_alonec5door playercolorborder = "ui/four_aesthetics/c5door.png"
+    image four_aesthetics_everyonec5door playercolorborder = im.Composite(
+        (820, 960),
+        (0,0), "ui/four_aesthetics/c5doorx.png",
+        (210,598), im.Crop(im.Recolor("cr/reza_angry.png", 15, 15, 15), (430,0,400,360)),
+    )
+    image four_aesthetics_everyonec5door playercolorborder selected = im.Composite(
+        (820, 960),
+        (0,0), "ui/four_aesthetics/c5doorx2.png",
+        (210,598), im.Crop(im.Recolor("cr/reza_angry.png", 45, 45, 45), (430,0,400,360)),
+    )
+
+    image four_aesthetics_c5door_border = four_aesthetics.four_aesthetics_banners.recolor_to_playercolor_displayable(
+        "ui/four_aesthetics/c5doorborder.png"
     )
 
 init python:
@@ -498,6 +507,9 @@ screen four_aesthetics_c5doors_choice(items):
                                     zoom 0.5
                             else:
                                 add (c5door_image+(c5door_status(False) if c5door_status else "")):
+                                    zoom 0.5
+                            if "playercolorborder" in c5door_image:
+                                add 'four_aesthetics_c5door_border':
                                     zoom 0.5
 
                             text caption style "menu_choice":
