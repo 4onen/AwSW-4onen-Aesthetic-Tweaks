@@ -21,6 +21,21 @@ init:
         (75,121), im.Crop("cr/adine_giggle_b.png",(95,0,325,839)),
         (-20,121), im.Crop("cr/adine_giggle_b.png",(0,0,420,460)),
     )
+    image four_aesthetics_adinec5door = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 74, 93, 136),
+        (45,121), im.Crop("cr/adine_disappoint_b.png",(0,0,700,837)),
+    )
+    image four_aesthetics_adinec5door selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 74, 93, 136),
+        (45,121), im.Crop("cr/adine_normal_b.png",(0,0,700,837)),
+    )
+    image four_aesthetics_adinec5door selected good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 74, 93, 136),
+        (45,121), im.Crop("cr/adine_giggle_b.png",(0,0,700,837)),
+    )
 
 
     image four_aesthetics_annabanner neutral = im.Composite(

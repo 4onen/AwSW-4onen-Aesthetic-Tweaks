@@ -32,12 +32,15 @@ def select_banners(items):
 
 
 c5doors = {
+    "Adine.":(
+        'four_aesthetics_adinec5door',
+        lambda selected: (" selected good" if getattr(renpy.store, 'adinestatus', 'good') else " selected") if selected else ""
+    ),
     "Anna.": (
         'four_aesthetics_annac5door',
         lambda selected: (" good selected "+getattr(renpy.store, 'annastatus', "good") if selected else " good") if getattr(renpy.store, 'annagoodending', False) else (" neutral selected" if selected else " neutral")
     ),
     # "Bryce.": ('four_aesthetics_brycec5door', lambda selected: " good" if getattr(renpy.store, 'brycegoodending', False) else " neutral"),
-    # "Adine.": ('four_aesthetics_adinec5door', None),
     # "Lorem.": ('four_aesthetics_loremc5door', lambda selected: " good" if getattr(renpy.store, 'loremstatus', "neutral") == "good" else " neutral"),
     "Remy.": (
         'four_aesthetics_remyc5door',
