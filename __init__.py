@@ -96,7 +96,11 @@ def link_c5doors():
         .search_say("(Today is the day of the big fireworks. Who shall I bring?)") \
         ._search(lambda n: isinstance(n.next, ast.Menu), 50, "Chapter 5 character menu not within 50 nodes of 'if loremdead == False'")
 
-    ml.ast_utils._create_hook(node_from=ml.find_label('chapter5').search_menu(depth=400).node, func=_show_c5doormenu, tag="four_aesthetics_c5doors_menu")
+    ml.ast_utils._create_hook(
+        node_from=c5menutrailer.node,
+        func=_show_c5doormenu,
+        tag="four_aesthetics_c5doors_menu"
+    )
 
 def link_trimrecolor():
     say_box_trimrecolor = "Frame('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_scale_color else 'image/ui/four_aesthetics/dialogbox.png', renpy.get_widget_properties('who').get('color',None) or (persistent.playercolor if not who else None) or '#FFF'), 0, 0)"
@@ -159,6 +163,7 @@ class AwSWMod(Mod):
         # )
 
         link_bannermod()
+        link_c5doors()
         link_trimrecolor()
 
         if has_mod("Chaos_Knight core mod."):
