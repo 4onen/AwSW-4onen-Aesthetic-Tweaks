@@ -1,6 +1,8 @@
 # AwSW 4onen's Aesthetic Tweaks
 
-### USERS DOWNLOAD [HERE: https://github.com/4onenm/AwSW-Bangok/archive/refs/heads/main.zip](https://github.com/4onenm/AwSW-Bangok/archive/refs/heads/main.zip)
+![Screenshot](https://raw.githubusercontent.com/4onen/AwSW-4onen-Aesthetic-Tweaks/main/screenshots/SPOILER_image.png)
+
+### USERS DOWNLOAD [HERE: https://github.com/4onen/AwSW-4onen-Aesthetic-Tweaks/archive/refs/heads/main.zip](https://github.com/4onen/AwSW-4onen-Aesthetic-Tweaks/archive/refs/heads/main.zip)
 
 ## Mandatory Requirements:
 
