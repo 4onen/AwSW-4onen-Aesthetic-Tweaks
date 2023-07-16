@@ -56,8 +56,8 @@ c5doors = {
     "Everyone.": ('four_aesthetics_everyonec5door playercolorborder', lambda selected: " selected" if selected else ""),
 }
 
-def register_raw_c5door(prompt, im_name, statusvariable=''):
-    banners[prompt] = (im_name, statusvariable)
+def register_raw_c5door(prompt, im_name, tagfunction):
+    c5doors[prompt] = (im_name, tagfunction)
 
 def select_c5doors(items):
     door_items = []
