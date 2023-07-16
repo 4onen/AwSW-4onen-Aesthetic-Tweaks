@@ -6,7 +6,7 @@ from modloader.modinfo import has_mod
 
 import jz_magmalink as ml
 
-from four_aesthetics_banners import register_raw_banner
+from four_aesthetics_banners import register_raw_banner, register_raw_c5door
 
 
 def _show_charmenu(calling_node):
@@ -168,6 +168,7 @@ class AwSWMod(Mod):
 
         if has_mod("Chaos_Knight core mod."):
             register_raw_banner("Meet with Naomi.",'four_aesthetics_naomibanner','naomistatus')
+            register_raw_c5door("Naomi.",'four_aesthetics_naomic5door', lambda selected: (" selected" if selected else "") + (" good" if getattr(renpy.store, 'naomiromance', 0) > 50 else (" worstend" if getattr(renpy.store, 'ecknaomim3earlyleave', True) else " neutral")))
 
         ml.register_mod_settings(cls, 'four_aesthetics_modsettings')
 

@@ -246,6 +246,31 @@ init:
         (0,60), im.Crop("cr/naomi_smile_b.png", (65,0,400,903)),
         (0,60), im.Crop("cr/naomi_smile_b.png", (65,0,500,220)),
     )
+    image four_aesthetics_naomic5door worstend = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 190, 116, 164),
+        (45,55), im.Crop("cr/naomi_cry.png", (65,0,700,903)),
+    )
+    image four_aesthetics_naomic5door neutral = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 190, 116, 164),
+        (45,55), im.Crop("cr/naomi_hurt.png", (65,0,700,903)),
+    )
+    image four_aesthetics_naomic5door selected = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 190, 116, 164),
+        (45,55), im.Crop("cr/naomi_normal.png", (65,0,700,903)),
+    )
+    image four_aesthetics_naomic5door good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 190, 116, 164),
+        (45,55), im.Crop("cr/naomi_normal.png", (65,0,700,903)),
+    )
+    image four_aesthetics_naomic5door selected good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 190, 116, 164),
+        (45,55), im.Crop("cr/naomi_shy.png", (65,0,700,903)),
+    )
 
 
 init python in four_aesthetics:
