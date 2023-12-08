@@ -4,15 +4,11 @@ from renpy import ast, config, game, python, exports
 from modloader.modclass import Mod, loadable_mod
 from modloader.modinfo import has_mod
 
-import jz_magmalink as ml
-
-from four_aesthetics_banners import register_raw_banner, register_raw_c5door
-
-
 def _show_charmenu(calling_node):
     ast.next_node(calling_node.next)
     ast.statement_name("four_aesthetics_banner_menu")
     
+    import jz_magmalink as ml
     menu = ml.node(calling_node).search_menu()
     choices = []
 
@@ -42,6 +38,7 @@ def _show_c5doormenu(calling_node):
     ast.next_node(calling_node.next)
     ast.statement_name("four_aesthetics_c5doors_menu")
     
+    import jz_magmalink as ml
     menu = ml.node(calling_node).search_menu()
     choices = []
 
@@ -68,7 +65,7 @@ def _show_c5doormenu(calling_node):
     return True
 
 
-def link_bannermod():
+def link_bannermod(ml):
     c1csplayed = ml.find_label("chapter1chars") \
         .search_if("chapter1csplayed == 0")
 
@@ -91,7 +88,7 @@ def link_bannermod():
         # Disabling of Saunders' pagination is left to MagmaLink
         ml.ast_utils._create_hook(node_from=paginationif.node, func=_show_charmenu, tag=tag)
 
-def link_c5doors():
+def link_c5doors(ml):
     c5menutrailer = ml.find_label('chapter5') \
         .search_say("(Today is the day of the big fireworks. Who shall I bring?)") \
         ._search(lambda n: isinstance(n.next, ast.Menu), 50, "Chapter 5 character menu not within 50 nodes of 'if loremdead == False'")
@@ -102,7 +99,7 @@ def link_c5doors():
         tag="four_aesthetics_c5doors_menu"
     )
 
-def link_trimrecolor():
+def link_trimrecolor(ml):
     say_box_trimrecolor = "Frame('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_character_trim_color else four_aesthetics.four_aesthetics_banners.BlueMap('image/ui/dialogbox.png' if persistent.four_aesthetics_disable_scale_color else 'image/ui/four_aesthetics/dialogbox.png', renpy.get_widget_properties('who').get('color',None) or (persistent.playercolor if not who else None) or '#FFF'), 0, 0)"
 
     saywindowif = ml.find_screen('say').search_if()
@@ -157,16 +154,18 @@ class AwSWMod(Mod):
 
     @classmethod
     def mod_load(cls):
+        import jz_magmalink as ml
         # Testing link
         # ( ml.find_label('seccont')
         #     .hook_to('four_c5doorsmod_test_scene')
         # )
 
-        link_bannermod()
-        link_c5doors()
-        link_trimrecolor()
+        link_bannermod(ml)
+        link_c5doors(ml)
+        link_trimrecolor(ml)
 
         if has_mod("Chaos_Knight core mod."):
+            from four_aesthetics_banners import register_raw_banner, register_raw_c5door
             register_raw_banner("Meet with Naomi.",'four_aesthetics_naomibanner','naomistatus')
             register_raw_c5door("Naomi.",'four_aesthetics_naomic5door', lambda selected: (" selected" if selected else "") + (" good" if getattr(renpy.store, 'naomiromance', 0) > 50 else (" worstend" if getattr(renpy.store, 'ecknaomim3earlyleave', True) else " neutral")))
 
