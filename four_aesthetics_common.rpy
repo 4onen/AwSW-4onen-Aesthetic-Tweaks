@@ -273,6 +273,48 @@ init:
     )
 
 
+    image four_aesthetics_maverickbanner neutral = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/four_aesthetics/banner.png", 92, 92, 92),
+        (0,183), im.Crop("cr/maverick_normal.png", (0,0,400,775)),
+    )
+    image four_aesthetics_maverickbanner good = im.Composite(
+        (515,960),
+        (0,0), im.Recolor("ui/four_aesthetics/banner.png", 92, 92, 92),
+        (0,183), im.Crop("cr/maverick_rehappy.png", (0,0,400,775)),
+    )
+    image four_aesthetics_maverickc5door selected worstend = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 92, 92, 92),
+        (100,183), im.Crop("cr/maverick_resad.png", (0,0,645,775)),
+    )
+    image four_aesthetics_maverickc5door neutral = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 92, 92, 92),
+        (100,183), im.Crop("cr/maverick_sideeye.png", (0,0,645,775)),
+    )
+    image four_aesthetics_maverickc5door worstend = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 92, 92, 92),
+        (100,183), im.Crop("cr/maverick_sad.png", (0,0,645,775)),
+    )
+    image four_aesthetics_maverickc5door good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 92, 92, 92),
+        (99,185), im.Crop("cr/maverick_resideeye.png", (0,0,645,775)),
+    )
+    image four_aesthetics_maverickc5door selected good = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 92, 92, 92),
+        (99,185), im.Crop("cr/maverick_rehappy.png", (0,0,645,775)),
+    )
+    image four_aesthetics_maverickc5door selected neutral = im.Composite(
+        (820,960),
+        (0,0), im.Recolor( "ui/four_aesthetics/c5door.png", 92, 92, 92),
+        (100,183), im.Crop("cr/maverick_normal.png", (0,0,645,775)),
+    )
+
+
 init python in four_aesthetics:
     import jz_magmalink as ml
     import four_aesthetics_banners

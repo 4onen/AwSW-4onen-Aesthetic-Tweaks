@@ -87,10 +87,10 @@ def link_trimrecolor(ml):
 @loadable_mod
 class AwSWMod(Mod):
     name = "4onen's Aesthetic Tweaks"
-    version = "v0.5"
+    version = "v0.6"
     author = "4onen"
     nsfw = False
-    dependencies = ["MagmaLink", "?Chaos_Knight core mod."]
+    dependencies = ["MagmaLink", "?Chaos_Knight core mod.", "?Redemption"]
 
     @classmethod
     def mod_load(cls):
@@ -108,6 +108,12 @@ class AwSWMod(Mod):
             from four_aesthetics_banners import register_raw_banner, register_raw_c5door
             register_raw_banner("Meet with Naomi.",'four_aesthetics_naomibanner','naomistatus')
             register_raw_c5door("Naomi.",'four_aesthetics_naomic5door', lambda selected: (" selected" if selected else "") + (" good" if getattr(renpy.store, 'naomiromance', 0) > 50 else (" worstend" if getattr(renpy.store, 'ecknaomim3earlyleave', True) else " neutral")))
+        
+        if has_mod("Redemption"):
+            from four_aesthetics_banners import register_raw_banner, register_raw_c5door
+            register_raw_banner("Meet with Maverick.",'four_aesthetics_maverickbanner','maverickstatus')
+            register_raw_c5door("Maverick.",'four_aesthetics_maverickc5door', lambda selected: (" selected" if selected else "") + (" good" if getattr(renpy.store, 'maverick_redem_dream', True) and getattr(renpy.store, 'maverick_redem_mapgiven', True) else (" neutral" if getattr(renpy.store, 'maverick_redem_dream', False) or getattr(renpy.store, 'maverick_redem_mapgiven', False) else " worstend")))
+            
 
         ml.register_mod_settings(cls, 'four_aesthetics_modsettings')
 

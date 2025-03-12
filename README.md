@@ -26,3 +26,8 @@ This mod adds a few aesthetic tweaks to the game:
 + Recoloring of the trims of the player's textbox and menu choice textbox to match the player color.
 
 Options can be toggled in the mod's Magmalink Mod Settings menu.
+
+## Credits:
+
++ **4onen**: Mod creator
++ **Nyxondra**: Maverick art
