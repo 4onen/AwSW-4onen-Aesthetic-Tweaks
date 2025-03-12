@@ -1,5 +1,6 @@
 import renpy
 import renpy.display.im as im
+from renpy import ast, config, game, python, exports
 
 banners = {
     "Meet with Remy.": ('four_aesthetics_remybanner','remystatus'),
@@ -99,3 +100,63 @@ def _bannermod_playercolor_update_fn(_displaytime, _anydisplaytime, image):
 
 def recolor_to_playercolor_displayable(im):
     return renpy.display.layout.DynamicDisplayable(_bannermod_playercolor_update_fn,im)
+
+def show_charmenu(calling_node):
+    ast.next_node(calling_node.next)
+    ast.statement_name("four_aesthetics_banner_menu")
+    
+    import jz_magmalink as ml
+    menu = ml.node(calling_node).search_menu()
+    choices = []
+
+    for i, (label, condition, block) in enumerate(menu.node.items):
+        if config.say_menu_text_filter:
+            label = config.say_menu_text_filter(label)
+        
+        if block is None:
+            renpy.error("Angels with Scaly Wings character menus should not have menu labels without blocks.")
+        else:
+            if python.py_eval(condition):
+                choices.append(((label % exports.tag_quoting_dict) if config.old_substitutions else label, i))
+
+    ast.say_menu_with(menu.node.with_, game.interface.set_transition)
+
+    if not choices:
+        return None
+
+    choice = exports.display_menu(choices, screen='four_aesthetics_banners_choice')
+
+    if choice is not None:
+        ast.next_node(menu.node.items[choice][2][0])
+
+    return True
+
+def show_c5doormenu(calling_node):
+    ast.next_node(calling_node.next)
+    ast.statement_name("four_aesthetics_c5doors_menu")
+    
+    import jz_magmalink as ml
+    menu = ml.node(calling_node).search_menu()
+    choices = []
+
+    for i, (label, condition, block) in enumerate(menu.node.items):
+        if config.say_menu_text_filter:
+            label = config.say_menu_text_filter(label)
+        
+        if block is None:
+            renpy.error("Angels with Scaly Wings character menus should not have menu labels without blocks.")
+        else:
+            if python.py_eval(condition):
+                choices.append(((label % exports.tag_quoting_dict) if config.old_substitutions else label, i))
+
+    ast.say_menu_with(menu.node.with_, game.interface.set_transition)
+
+    if not choices:
+        return None
+
+    choice = exports.display_menu(choices, screen='four_aesthetics_c5doors_choice')
+
+    if choice is not None:
+        ast.next_node(menu.node.items[choice][2][0])
+
+    return True

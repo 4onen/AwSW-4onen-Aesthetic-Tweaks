@@ -1,71 +1,10 @@
 import renpy
-from renpy import ast, config, game, python, exports
-
+import renpy.ast
 from modloader.modclass import Mod, loadable_mod
 from modloader.modinfo import has_mod
 
-def _show_charmenu(calling_node):
-    ast.next_node(calling_node.next)
-    ast.statement_name("four_aesthetics_banner_menu")
-    
-    import jz_magmalink as ml
-    menu = ml.node(calling_node).search_menu()
-    choices = []
-
-    for i, (label, condition, block) in enumerate(menu.node.items):
-        if config.say_menu_text_filter:
-            label = config.say_menu_text_filter(label)
-        
-        if block is None:
-            renpy.error("Angels with Scaly Wings character menus should not have menu labels without blocks.")
-        else:
-            if python.py_eval(condition):
-                choices.append(((label % exports.tag_quoting_dict) if config.old_substitutions else label, i))
-
-    ast.say_menu_with(menu.node.with_, game.interface.set_transition)
-
-    if not choices:
-        return None
-
-    choice = exports.display_menu(choices, screen='four_aesthetics_banners_choice')
-
-    if choice is not None:
-        ast.next_node(menu.node.items[choice][2][0])
-
-    return True
-
-def _show_c5doormenu(calling_node):
-    ast.next_node(calling_node.next)
-    ast.statement_name("four_aesthetics_c5doors_menu")
-    
-    import jz_magmalink as ml
-    menu = ml.node(calling_node).search_menu()
-    choices = []
-
-    for i, (label, condition, block) in enumerate(menu.node.items):
-        if config.say_menu_text_filter:
-            label = config.say_menu_text_filter(label)
-        
-        if block is None:
-            renpy.error("Angels with Scaly Wings character menus should not have menu labels without blocks.")
-        else:
-            if python.py_eval(condition):
-                choices.append(((label % exports.tag_quoting_dict) if config.old_substitutions else label, i))
-
-    ast.say_menu_with(menu.node.with_, game.interface.set_transition)
-
-    if not choices:
-        return None
-
-    choice = exports.display_menu(choices, screen='four_aesthetics_c5doors_choice')
-
-    if choice is not None:
-        ast.next_node(menu.node.items[choice][2][0])
-
-    return True
-
-
 def link_bannermod(ml):
+    from four_aesthetics_banners import show_charmenu
     c1csplayed = ml.find_label("chapter1chars") \
         .search_if("chapter1csplayed == 0")
 
@@ -86,16 +25,17 @@ def link_bannermod(ml):
 
     for tag, paginationif in cpaginationifs:
         # Disabling of Saunders' pagination is left to MagmaLink
-        ml.ast_utils._create_hook(node_from=paginationif.node, func=_show_charmenu, tag=tag)
+        ml.ast_utils._create_hook(node_from=paginationif.node, func=show_charmenu, tag=tag)
 
 def link_c5doors(ml):
+    from four_aesthetics_banners import show_c5doormenu
     c5menutrailer = ml.find_label('chapter5') \
         .search_say("(Today is the day of the big fireworks. Who shall I bring?)") \
-        ._search(lambda n: isinstance(n.next, ast.Menu), 50, "Chapter 5 character menu not within 50 nodes of 'if loremdead == False'")
+        ._search(lambda n: isinstance(n.next, renpy.ast.Menu), 50, "Chapter 5 character menu not within 50 nodes of 'if loremdead == False'")
 
     ml.ast_utils._create_hook(
         node_from=c5menutrailer.node,
-        func=_show_c5doormenu,
+        func=show_c5doormenu,
         tag="four_aesthetics_c5doors_menu"
     )
 
