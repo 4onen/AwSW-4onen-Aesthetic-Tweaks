@@ -12,6 +12,8 @@
 
 + **Chaos Knight's Core Mod**: [Steam Workshop](https://steamcommunity.com/workshop/filedetails/?id=1405536097)
     + If Naomi appears in a chapter select menu, includes her banner, but requires her assets be present. (Of course, if you have Naomi working, then you already have this mod.)
++ **Redemption**: [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3222268524)
+    + If Maverick appears in a chapter select menu, includes his banner, but requires his additional expressions be present.
 
 ## Content:
 
